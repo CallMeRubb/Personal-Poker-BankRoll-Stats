@@ -1,20 +1,11 @@
 {% extends 'layout.html' %}
+
 {% block content %}
 <div class="col-xs-10 col-sm-6 col-md-6">
     <div class="card card-style mb-2">
         <div class="card-body">
             <div class="chart-container" style="position: relative;">
-                <canvas id="income_vs_expense"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-xs-10 col-sm-6 col-md-6">
-    <div class="card card-style mb-2">
-        <div class="card-body">
-            <div class="chart-container" style="position: relative;">
-                <canvas id="expenses_over_time"></canvas>
+                <canvas id="earnings_and_buy_ins"></canvas>
             </div>
         </div>
     </div>
@@ -23,71 +14,45 @@
 {% block javascript %}
 <script>
     Chart.scaleService.updateScaleDefaults('linear', {
-            ticks: {
-                min: 0
-            }
+        ticks: {}
     });
 
-    let income_expenses = JSON.parse({{ income_vs_expenses | tojson }});
+    let labels = JSON.parse({{ dates_label | tojson }});
+    let earnings = JSON.parse({{ earnings | tojson }});
+    let buy_ins = JSON.parse({{ total_buy_ins | tojson }});
 
-    let income_vs_expense_chart = new Chart(income_vs_expense, {
-        type: 'pie',
-        data: {
-        labels: ['expense', 'income'],
-            datasets: [{
-                label: "Income Vs Expenses",
-                data: income_expenses,
-                backgroundColor: ['#5DA5DA ', '#FAA43A', '#60BD68',
-                    '#B276B2', '#E16851', '#FB8267'],
-
-                borderWidth: 1,
-                hoverBorderColor: "black",
-                hoverBorderWidth: 2,
-                hoverBackgroundColor: 'rgba(154, 245, 140)',
-                pointHoverRadius: 5
-            }],
-        },
-        options: {
-                title: {
-                    display: true,
-                        text: "Income Vs Expenses",
-                            fontSize: 20,
-                },
-                legend: {
-                    position: "right",
-                        labels: {
-                        fontColor: "gray"
-                    },
-                    display: true,
-                },
-
-                elements: {
-                    hitRadius: 3,
-                }
-        }
-    })
-
-        let labels = JSON.parse({{ dates_label | tojson }});
-        let amount = JSON.parse({{ over_time_expenditure | tojson }})
-
-        new Chart(document.getElementById("expenses_over_time"), {
+    new Chart(document.getElementById("earnings_and_buy_ins"), {
         type: "line",
-        data:
-        {
+        data: {
             labels: labels,
             datasets: [{
-                label: "Expenditure Over Time",
-
-                data: amount,
+                label: "Earnings Over Time",
+                data: earnings,
                 fill: false,
-                borderColor: "rgb(75, 192, 192)",
+                borderColor: "rgb(255, 99, 132)",
+                lineTension: 0.1
+            },
+            {
+                label: "Total Buy-ins",
+                data: buy_ins,
+                fill: false,
+                borderColor: "rgb(0, 123, 255)",
                 lineTension: 0.1
             }]
         },
-        options: {}
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            }
+        }
     });
-
 
 </script>
 {% endblock %}
 {% endblock %}
+
+
+
+

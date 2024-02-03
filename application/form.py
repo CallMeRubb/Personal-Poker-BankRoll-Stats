@@ -1,14 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, IntegerField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms import SelectField, IntegerField, SubmitField
+from wtforms.validators import DataRequired, NumberRange
 
 class UserInputForm(FlaskForm):
-    type = SelectField('Type', validators=[DataRequired()],
-                       choices=[('income', 'income'), ('expenses', 'expenses')])
-
-    category = SelectField('Category', validators=[DataRequired()],
-                           choices=[('rent', 'rent'), ('salary', 'salary'),
-                                    ('investment', 'investment'), ('side_hustle', 'side_hustle')])
-
-    amount = IntegerField("Amount", validators=[DataRequired()])
+    game_type = SelectField('Game Type', validators=[DataRequired()],
+                            choices=[('sit_and_go', 'Sit and Go'), ('tournament', 'Tournament')])
+    buy_in = IntegerField("Buy-In", validators=[NumberRange(min=0)])
+    total_pot = IntegerField("Total Pot", validators=[NumberRange(min=0)])
     submit = SubmitField("Generate Report")

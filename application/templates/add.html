@@ -15,27 +15,36 @@
                 <fieldset class="form-group">
                     <legend class="mb-4">Enter Todays Poker Game Stats</legend>
                     <div class="form-group">
-                        {{ form.amount.label(class="form-control-label") }}
-                        {% if form.amount.errors %}
-                        {{ form.amount(class="form-control form-control-sm is-invalid") }}
-                        {% for error in form.amount.errors %}
-                        <div class="invalid-feedback">
-                            <span>{{error}}</span>
-                        </div>
-                        {% endfor %}
+                        {{ form.game_type.label(class="form-control-label") }}
+                        {{ form.game_type(class="form-control form-control-sm") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.buy_in.label(class="form-control-label") }}
+                        {% if form.buy_in.errors %}
+                            {{ form.buy_in(class="form-control form-control-sm is-invalid") }}
+                            {% for error in form.buy_in.errors %}
+                                <div class="invalid-feedback">
+                                    <span>{{ error }}</span>
+                                </div>
+                            {% endfor %}
                         {% else %}
-                        {{ form.amount(class="form-control form-control-sm") }}
+                            {{ form.buy_in(class="form-control form-control-sm") }}
                         {% endif %}
                     </div>
 
                     <div class="form-group">
-                        {{ form.type.label(class = "form-control-label") }}
-                        {{ form.type(class = "form-control form-control-sm") }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ form.category.label(class = "form-control-label") }}
-                        {{ form.category(class = "form-control form-control-sm") }}
+                        {{ form.total_pot.label(class="form-control-label") }}
+                        {% if form.total_pot.errors %}
+                            {{ form.total_pot(class="form-control form-control-sm is-invalid") }}
+                            {% for error in form.total_pot.errors %}
+                                <div class="invalid-feedback">
+                                    <span>{{ error }}</span>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            {{ form.total_pot(class="form-control form-control-sm") }}
+                        {% endif %}
                     </div>
 
                     <div class="form-group border-bottom pb-3">
