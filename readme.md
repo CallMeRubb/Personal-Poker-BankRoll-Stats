@@ -30,6 +30,8 @@ _Total pot: This is going to be the amount of money you entered with._
 After adding all the required data, and submitting. Then you will be redirected to dashboard. 
 You need to send in at least 2 game datas to be able to see a graph on the Dashboard.
 
+
+
 History:
 Here you can see what game datas you have sent into the database. You can simply remove them, by clicking the _"DELETE"_ button.
 You will then be redirected to homepage with the updated graph.
