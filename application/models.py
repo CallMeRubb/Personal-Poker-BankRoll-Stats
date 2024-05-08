@@ -7,7 +7,7 @@ class IncomeExpenses(db.Model):
     game_type = db.Column(db.String(50), nullable=False)
     buy_in = db.Column(db.Integer, nullable=False)
     total_pot = db.Column(db.Integer, nullable=False)
-    earnings = db.Column(db.Integer, nullable=True)  # New column for earnings
+    earnings = db.Column(db.Integer, nullable=True)
 
     def __str__(self):
         return str(self.id)
